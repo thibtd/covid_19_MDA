@@ -1,10 +1,10 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: osx-64
-_anaconda_depends=2021.11=py39_0
+_anaconda_depends=2021.11
 _ipyw_jlab_nb_ext_conf=0.1.0=py39hecd8cb5_0
-_py-xgboost-mutex=2.0=cpu_0
-abseil-cpp=20210324.2=h23ab428_0
+_py-xgboost-mutex=2.0
+abseil-cpp=20210324.2
 alabaster=0.7.12=pyhd3eb1b0_0
 anaconda=custom=py39_1
 anaconda-client=1.9.0=py39hecd8cb5_0
@@ -23,7 +23,7 @@ asn1crypto=1.4.0=py_0
 astroid=2.6.6=py39hecd8cb5_0
 astropy=4.3.1=py39hf9932de_0
 async_generator=1.10=pyhd3eb1b0_0
-atomicwrites=1.4.0=py_0
+atomicwrites=1.4.0
 attrs=21.2.0=pyhd3eb1b0_0
 autopep8=1.5.7=pyhd3eb1b0_0
 aws-c-common=0.4.57=hb1e8313_1
