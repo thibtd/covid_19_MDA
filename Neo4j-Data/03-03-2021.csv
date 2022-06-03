@@ -1,4 +1,4 @@
-Province_State,Country_Region,Last_Update,Lat,Long_,Confirmed,Deaths,Recovered,Active,FIPS,Incident_Rate,Total_Test_Results,People_Hospitalized,Case_Fatality_Ratio,UID,ISO3,Testing_Rate,Hospitalization_Rate
+province,country,Last_Update,Lat,Long_,Confirmed,Deaths,Recovered,Active,FIPS,Incident_Rate,Total_Test_Results,People_Hospitalized,Case_Fatality_Ratio,UID,ISO3,Testing_Rate,Hospitalization_Rate
 Alabama,United States,3/4/2021 5:30,32.3182,-86.9023,497154,10029,295690,191435,1,10139.40938,4066498,,2.017282371,84000001,USA,82935.8468,
 Alaska,United States,3/4/2021 5:30,61.3707,-152.4044,59035,303,,,2,8069.906841,1711018,,0.513254849,84000002,USA,233891.0115,
 American Samoa,United States,3/4/2021 5:30,-14.271,-170.132,0,0,,,60,0,2140,,,16,ASM,3846.084722,
