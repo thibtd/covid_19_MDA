@@ -23,4 +23,6 @@ There are two ways of running the notebook with Voila:
 1) from the terminal: cd to the folder containing the code and the data then call $ voila mda_covid_010.ipynb 
 2) If you have nbextensions, enable the voila/extension extension. Open the notebook in jupyter and click on the voila icon. 
 
+However, it is preferable to use the 2nd option as the layout looks better. 
+
 It takes about 2-3 minutes for voila to compile and launch the notebook. 
