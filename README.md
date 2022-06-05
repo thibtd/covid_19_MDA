@@ -17,7 +17,7 @@ Population data: https://data.cdc.gov/Vaccinations/COVID-19-Vaccinations-in-the-
 Geographical data: https://www.kaggle.com/datasets/washimahmed/usa-latlong-for-state-abbreviations
 Stock data: https://www.yahoofinanceapi.com
 
-##  How to run the notebook with voila:
+##  How to run the notebook with voila (the app deployment module):
 the covid-19-data and the data folder that can be found on the google drive have to be unzipped and in the same folder as the notebooks. 
 There are two ways of running the notebook with Voila: 
 1) from the terminal: cd to the folder containing the code and the data then call $ voila mda_covid_010.ipynb 
