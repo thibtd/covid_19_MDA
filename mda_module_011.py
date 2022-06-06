@@ -1,3 +1,12 @@
+#Adding S3 bucket address id and key
+import boto3
+client = boto3.client(
+    's3',
+    aws_access_key_id = 'AKIATVEDGWT6HZ7NSLUT',
+    aws_secret_access_key = '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',
+    region_name = 'eu-west-3'
+    ) 
+
 def counties_preprocessing(dataset):
     import pandas as pd
     import numpy as np
@@ -57,7 +66,7 @@ def state_per_month(data):
     
     """ The function pre-processes the states data set."""
     
-    cwd = os.getcwd()
+    
     
     dataset = data.copy(deep=True)
     
@@ -84,7 +93,13 @@ def state_per_month(data):
     dataset['code'] = dataset['state'].map(codes_dict)
     
     # Latitude and Longitude data are added
-    coords = pd.read_csv(cwd+"/data/statelatlong.csv")
+    
+    obj = client.get_object(
+    Bucket = 'mda-covid19',
+    Key = 'statelatlong.csv'
+    )
+    coords = pd.read_csv(obj['Body'])
+    
     lat = list(coords["Latitude"])
     long = list(coords["Longitude"])
     name = list(coords["City"])
@@ -328,7 +343,12 @@ def cluster_process(df):
     df21_processed.set_index("state", inplace=True)
     df22_processed.set_index("state", inplace=True)
     
-    extra_data = pd.read_csv(cwd+"/data/extra_data.csv")
+    
+    obj = client.get_object(
+    Bucket = 'mda-covid19',
+    Key = 'extra_data.csv'
+    )
+    extra_data = pd.read_csv(obj['Body'])
     pop20, pop21, pop22 = population_data(extra_data)
     
     df20_processed['population'] = df20_processed['code'].map(pop20)
@@ -446,7 +466,7 @@ def anova_process(df):
     import pandas as pd
     import os
     
-    cwd = os.getcwd()
+   
     
     df20 = df[df["date"]<"2021-01"]
     df21 = df[(df["date"]>="2021-01") & (df["date"]<"2022-01")]
@@ -468,7 +488,12 @@ def anova_process(df):
     df20_processed = pd.DataFrame(df20.groupby(["state", "code", "month", "year"])[["latitude", "longitude", "cases", "deaths", "1_dose", "complete_dose"]].max()).reset_index()
     df21_processed = pd.DataFrame(df21.groupby(["state", "code", "month", "year"])[["latitude", "longitude", "cases", "deaths", "1_dose", "complete_dose"]].max()).reset_index()
     df22_processed = pd.DataFrame(df22.groupby(["state", "code", "month", "year"])[["latitude", "longitude", "cases", "deaths", "1_dose", "complete_dose"]].max()).reset_index()
-    extra_data = pd.read_csv(cwd+"/data/extra_data.csv")
+  
+    obj = client.get_object(
+    Bucket = 'mda-covid19',
+    Key = 'extra_data.csv'
+    )
+    extra_data = pd.read_csv(obj['Body'])
     pop20, pop21, pop22 = population_data(extra_data)
     
     df20_processed['population'] = df20_processed['code'].map(pop20)
