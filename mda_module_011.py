@@ -1,9 +1,10 @@
 import boto3
+import creds
 
 client = boto3.client(
     's3',
-    aws_access_key_id = 'AKIATVEDGWT6IV35Z5EK',
-    aws_secret_access_key = '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',
+    aws_access_key_id = creds.access_key_id,
+    aws_secret_access_key = creds.secret_access_key ,
     region_name = 'eu-west-3'
     )
 
