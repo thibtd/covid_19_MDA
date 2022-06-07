@@ -357,10 +357,6 @@ def cluster_process(df):
     df21_processed.drop(["code"], axis=1, inplace=True)
     df22_processed.drop(["code"], axis=1, inplace=True)
     
-<<<<<<< HEAD
-    
-=======
->>>>>>> 7687cdae11b40be2646b523b4e00ea17cee940f0
     return(df20_processed, df21_processed, df22_processed)
 
 
@@ -374,11 +370,6 @@ def cluster_algorithm(df, algorithm):
     import numpy as np
     
     data = np.array(df.loc[:,["latitude", "longitude", "cases", "deaths", "1_dose", "complete_dose", "population"]].values)
-<<<<<<< HEAD
-   
-=======
-    
->>>>>>> 7687cdae11b40be2646b523b4e00ea17cee940f0
     n_clusters = 5
     
     preprocessor = Pipeline(
@@ -412,13 +403,8 @@ def cluster_algorithm(df, algorithm):
     pcadf["predicted_cluster"] = pipe["clusterer"][algorithm].labels_
     
     Z = pipe["clusterer"][algorithm].labels_
-   
-    
-<<<<<<< HEAD
     return pcadf, Z
-=======
-    return pcadf, Zs
->>>>>>> 7687cdae11b40be2646b523b4e00ea17cee940f0
+
 
 
 def anova_process(df):
