@@ -340,47 +340,6 @@ def cluster_process(df):
     df21_processed.drop(["code"], axis=1, inplace=True)
     df22_processed.drop(["code"], axis=1, inplace=True)
     
-    
-    def risk_categorizer20(ratio):
-        if ratio<0.03:
-            return "Green"
-        elif 0.03<=ratio<0.06:
-            return "Yellow"
-        elif 0.06<=ratio<0.09:
-            return "Orange"
-        elif 0.09<=ratio<0.12:
-            return "Red"
-        elif ratio>=0.12:
-            return "Black"
-    
-    def risk_categorizer21(ratio):
-        if ratio<0.12:
-            return "Green"
-        elif 0.12<=ratio<0.15:
-            return "Yellow"
-        elif 0.15<=ratio<0.18:
-            return "Orange"
-        elif 0.18<=ratio<0.21:
-            return "Red"
-        elif ratio>=0.21:
-            return "Black"
-    
-    def risk_categorizer22(ratio):
-        if ratio<0.21:
-            return "Green"
-        elif 0.21<=ratio<0.24:
-            return "Yellow"
-        elif 0.24<=ratio<0.27:
-            return "Orange"
-        elif 0.27<=ratio<0.3:
-            return "Red"
-        elif ratio>=0.3:
-            return "Black"
-    
-    df20_processed["risk_category"] = (df20_processed["cases"]/df20_processed["population"]).apply(risk_categorizer20)
-    df21_processed["risk_category"] = (df21_processed["cases"]/df21_processed["population"]).apply(risk_categorizer21)
-    df22_processed["risk_category"] = (df22_processed["cases"]/df22_processed["population"]).apply(risk_categorizer22)
-    
     return(df20_processed, df21_processed, df22_processed)
 
 
@@ -394,12 +353,8 @@ def cluster_algorithm(df, algorithm):
     import numpy as np
     
     data = np.array(df.loc[:,["latitude", "longitude", "cases", "deaths", "1_dose", "complete_dose", "population"]].values)
-    true_label_names = np.array(df.loc[:,["risk_category"]].values)
     
-    label_encoder = LabelEncoder()
-    true_labels = label_encoder.fit_transform(true_label_names)
-    
-    n_clusters = len(label_encoder.classes_)
+    n_clusters = 5
     
     preprocessor = Pipeline(
         [
@@ -430,16 +385,10 @@ def cluster_algorithm(df, algorithm):
     
     pcadf = pd.DataFrame(pipe["preprocessor"].transform(data), columns=["PC1", "PC2"], index=df.index)
     pcadf["predicted_cluster"] = pipe["clusterer"][algorithm].labels_
-    pcadf["true_label"] = label_encoder.inverse_transform(true_labels)
     
     Z = pipe["clusterer"][algorithm].labels_
     
-    preprocessed_data = pipe["preprocessor"].transform(data)
-    predicted_labels = pipe["clusterer"][algorithm].labels_
-    silhouette = silhouette_score(preprocessed_data, predicted_labels)
-    ari = adjusted_rand_score(true_labels, predicted_labels)
-    
-    return pcadf, Z, silhouette, ari
+    return pcadf, Zs
 
 
 def anova_process(df):
