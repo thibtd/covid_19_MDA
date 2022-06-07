@@ -20,7 +20,8 @@ The data folder contains extra data that were used. Data were taken from the fol
 ##  How to run the notebook with voila (the app deployment module):
 - All our data files are hosted on AWS, there is no need to download any data files.
 - Download the creds.py file from the google drive and put it in the same folder as the notebook and the module. (This file could not be pulbished here for security reasons). 
-There are two ways of running the notebook with Voila: 
+
+### There are two ways of running the notebook with Voila: 
 1) from the terminal: cd to the folder containing the code and the data then call $ voila mda_covid_011.ipynb 
 2) If you have nbextensions, enable the voila/extension extension. Open the notebook in jupyter and click on the voila icon. 
 
